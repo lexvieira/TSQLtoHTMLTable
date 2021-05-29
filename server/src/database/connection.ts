@@ -4,10 +4,10 @@ import path from 'path';
 const connection = require('knex')({
   client: 'mssql',
   connection: {
-    host : '192.168.1.70',
+    host : '192.168.1.172',
     user : 'SA',
     password : 'JHu@hGTWSK@9t63',
-    database : 'MY_DB'
+    database : 'AdventureWorks2017'
   }
 });
 

@@ -14,18 +14,30 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(0, 0, 0);
 }
+
 
 .App-link {
   color: #61dafb;
+}
+
+table, tr, th, tr,  td {
+  border: 1px solid black;
+}
+
+.contentCentered {
+  height: auto; /* Magic here */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes App-logo-spin {

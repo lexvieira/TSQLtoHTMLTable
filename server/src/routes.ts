@@ -13,4 +13,8 @@ routes.get('/userjson', userController.index);
 
 routes.get('/usertsql', userController.userTSql);
 
+routes.get('/personreportstsql', userController.personReports);
+
+routes.get('/personsales/:utype', userController.salesPersonType);
+
 export default routes;

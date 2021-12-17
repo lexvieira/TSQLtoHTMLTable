@@ -1,0 +1,52 @@
+version: "3.5"
+services: 
+  nlw1_backend:
+    container_name: nlw1_backend
+    image: node:12.20.2
+    ports: 
+      - 81:3333
+    volumes: 
+      - ${PWD}/server:/opt/ui
+    command: npm run dev
+    depends_on: 
+      - "sqlserver"    
+    working_dir: /opt/ui
+    user: "1000"
+  nlw1_frontend:
+    container_name: nlw1_frontend
+    image: node:12.20.2 
+    ports:
+      - 80:3000
+    volumes: 
+      - ${PWD}/web:/opt/ui
+    command: npm run start
+    depends_on: 
+      - "nlw1_backend"  
+    working_dir: /opt/ui
+    user: "1000" 
+  nlw1_expo:
+    container_name: nlw1_expo
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    ports: 
+      - 19000:19000
+      - 19001:19001
+      - 19002:19002
+      - 19006:19006
+    volumes:
+      - ${PWD}/mobile:/opt/ui
+    command: npm run start
+    depends_on: 
+      - "nlw1_backend"    
+  sqlserver:
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
+    container_name: sqlserverV2017
+    environment:
+        SA_PASSWORD: "JHu@hGTWSK@9t63"
+        ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"      
+    volumes: 
+      - ../DockerSqlserver/data/sqlserver:/var/opt/mssql    
